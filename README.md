@@ -29,3 +29,10 @@ Configure the connection to mongodb:
    --mongodb-database     string    MongoDB database name    (default "bitclout")
    --mongodb-uri          string    MongoDB connection URI   (default "mongodb://localhost:27017")
 ```
+
+You may need to connect to the localhost network or supply DB authentication:
+
+```
+docker run --network="host" -it mongodb-dumper /bitclout/bin/mongodb-dumper run --mongo-uri "mongodb://userx:passwd@localhost:27017"
+```
+
