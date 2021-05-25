@@ -47,9 +47,9 @@ func init() {
 	coreCmd.SetupRunFlags(runCmd)
 
 	// Add the mongo dumper flags
-	runCmd.PersistentFlags().String("mongodb-uri", "mongodb://localhost:27017", "MongoDB connection URI")
-	runCmd.PersistentFlags().String("mongodb-database", "bitclout", "MongoDB database name")
-	runCmd.PersistentFlags().String("mongodb-collection", "data", "MongoDB collection name")
+	runCmd.PersistentFlags().String("mongo-uri", "mongodb://localhost:27017", "MongoDB connection URI")
+	runCmd.PersistentFlags().String("mongo-database", "bitclout", "MongoDB database name")
+	runCmd.PersistentFlags().String("mongo-collection", "data", "MongoDB collection name")
 
 	runCmd.PersistentFlags().VisitAll(func(flag *pflag.Flag) {
 		viper.BindPFlag(flag.Name, flag)
