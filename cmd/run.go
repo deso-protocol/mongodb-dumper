@@ -47,7 +47,7 @@ func init() {
 	coreCmd.SetupRunFlags(runCmd)
 
 	// Add the mongo dumper flags
-	runCmd.PersistentFlags().String("mongodb-uri", "mongodb://localhost:27017", "MongoDBB connection URI")
+	runCmd.PersistentFlags().String("mongodb-uri", "mongodb://localhost:27017", "MongoDB connection URI")
 	runCmd.PersistentFlags().String("mongodb-database", "bitclout", "MongoDB database name")
 	runCmd.PersistentFlags().String("mongodb-collection", "data", "MongoDB collection name")
 
