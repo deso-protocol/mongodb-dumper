@@ -81,7 +81,7 @@ func (syncSrv *SyncingService) DisconnectFromMongo() {
 func SimplifyMap(docMap *map[string]interface{}) {
 	// Go through all keys in map
 	for key, val := range *docMap {
-		if val == nil {
+		if val == nil || (*docMap)[key] == nil {
 			continue
 		}
 
@@ -96,7 +96,11 @@ func SimplifyMap(docMap *map[string]interface{}) {
 			BH := (*docMap)[key].(lib.BlockHash)
 			(*docMap)[key] = (&BH).String()
 		case *lib.BlockHash:
-			(*docMap)[key] = (*docMap)[key].(*lib.BlockHash).String()
+			if (*docMap)[key].(*lib.BlockHash) == nil {
+				(*docMap)[key] = nil          
+			} else {
+				(*docMap)[key] = (*docMap)[key].(*lib.BlockHash).String()
+			}
 		case *lib.BlockNode:
 			prnt := (*docMap)[key].(*lib.BlockNode)
 			delete((*docMap), key)
@@ -106,7 +110,11 @@ func SimplifyMap(docMap *map[string]interface{}) {
 				(*docMap)["ParentHash"] = nil
 			}
 		case *big.Int:
-			(*docMap)[key] = (*docMap)[key].(*big.Int).String()
+			if (*docMap)[key].(*big.Int) == nil {
+				(*docMap)[key] = nil          
+			} else {
+				(*docMap)[key] = (*docMap)[key].(*big.Int).String()
+			}
 		case lib.StakeEntry:
 			delete(*docMap, key)
 		}
