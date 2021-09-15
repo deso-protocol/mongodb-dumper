@@ -4,7 +4,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add --update go=1.16.4-r0 gcc g++ vips-dev
 
-WORKDIR /bitclout/src
+WORKDIR /deso/src
 
 COPY mongodb-dumper/go.mod mongodb-dumper/
 COPY mongodb-dumper/go.sum mongodb-dumper/
@@ -12,7 +12,7 @@ COPY core/go.mod core/
 COPY core/go.sum core/
 COPY core/third_party/ core/third_party/
 
-WORKDIR /bitclout/src/mongodb-dumper
+WORKDIR /deso/src/mongodb-dumper
 
 RUN go mod download
 
@@ -22,7 +22,7 @@ COPY mongodb-dumper/mongodb mongodb
 COPY mongodb-dumper/main.go .
 
 # include core src
-COPY core/clouthash ../core/clouthash
+COPY core/desohash ../core/desohash
 COPY core/cmd       ../core/cmd
 COPY core/lib       ../core/lib
 
@@ -32,4 +32,4 @@ RUN GOOS=linux go build -mod=mod -a -installsuffix cgo -o bin/mongodb-dumper mai
 # create tiny image
 FROM alpine:edge
 
-COPY --from=mongodb-dumper /bitclout/src/mongodb-dumper/bin/mongodb-dumper /bitclout/bin/mongodb-dumper
+COPY --from=mongodb-dumper /deso/src/mongodb-dumper/bin/mongodb-dumper /deso/bin/mongodb-dumper

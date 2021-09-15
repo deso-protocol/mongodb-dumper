@@ -1,6 +1,6 @@
 # mongodb-dumper
 
-`mongodb-dumper` runs a full BitClout node and dumps the chain data into a MongoDB database
+`mongodb-dumper` runs a full DeSo node and dumps the chain data into a MongoDB database
 
 ## Build
 
@@ -19,20 +19,20 @@ docker build -t mongodb-dumper -f Dockerfile ..
 You may need sudo:
 
 ```
-docker run -it mongodb-dumper /bitclout/bin/mongodb-dumper run
+docker run -it mongodb-dumper /deso/bin/mongodb-dumper run
 ```
 
 Configure the connection to mongodb:
 
 ```
    --mongodb-collection   string    MongoDB collection name  (default "data")
-   --mongodb-database     string    MongoDB database name    (default "bitclout")
+   --mongodb-database     string    MongoDB database name    (default "deso")
    --mongodb-uri          string    MongoDB connection URI   (default "mongodb://localhost:27017")
 ```
 
 You may need to connect to the localhost network or supply DB authentication:
 
 ```
-docker run --network="host" -it mongodb-dumper /bitclout/bin/mongodb-dumper run --mongo-uri "mongodb://userx:passwd@localhost:27017"
+docker run --network="host" -it mongodb-dumper /deso/bin/mongodb-dumper run --mongo-uri "mongodb://userx:passwd@localhost:27017"
 ```
 

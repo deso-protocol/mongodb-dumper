@@ -8,7 +8,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/bitclout/core/lib"
+	"github.com/deso-project/core/lib"
 	"log"
 	"math/big"
 	"time"
@@ -189,7 +189,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 	switch prefix {
 	case 0: // _PrefixBlockHashToBlock
-		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgBitCloutBlock)
+		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgDeSoBlock)
 		var blockHash lib.BlockHash
 
 		err = blockRet.FromBytes(val)
@@ -201,7 +201,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 		docMap := structs.Map(*blockRet)
 		docMap["BlockHash"] = blockHash
 		SimplifyMap(&docMap)
-		docMap["MongoMeta"] = "A bitclout block and its corresponding blockhash."
+		docMap["MongoMeta"] = "A deso block and its corresponding blockhash."
 		docMap["BadgerKeyPrefix"] = "_PrefixBlockHashToBlock:0"
 
 		docJSON, _ := json.Marshal(docMap)
@@ -215,7 +215,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 		docMap := structs.Map(BN) // Convert to map
 		SimplifyMap(&docMap)
-		docMap["MongoMeta"] = "A block node in the bitclout blockchain graph."
+		docMap["MongoMeta"] = "A block node in the deso blockchain graph."
 		docMap["BadgerKeyPrefix"] = "_PrefixHeightHashToNodeInfo:1"
 
 		docJSON, _ := json.Marshal(docMap)
@@ -234,7 +234,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 		docJSON, _ := json.Marshal(docMap)
 		return docJSON
-	case 3: //_KeyBestBitCloutBlockHash
+	case 3: //_KeyBestDeSoBlockHash
 		var ret lib.BlockHash
 		_, err := itr.Item().ValueCopy(ret[:])
 		if err != nil {
@@ -243,8 +243,8 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 		docMap := map[string]interface{}{
 			"Hash":            ret.String(),
-			"MongoMeta":       "The hash of the front of the best BitClout Chain.",
-			"BadgerKeyPrefix": "_KeyBestBitCloutBlockHash:3",
+			"MongoMeta":       "The hash of the front of the best DeSo Chain.",
+			"BadgerKeyPrefix": "_KeyBestDeSoBlockHash:3",
 			"Time":            time.Now().String(),
 		}
 
@@ -661,12 +661,12 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 		docJSON, _ := json.Marshal(docMap)
 		return docJSON
 
-	case 32: // _PrefixCreatorBitCloutLockedNanosCreatorPKID
+	case 32: // _PrefixCreatorDeSoLockedNanosCreatorPKID
 		docMap := map[string]interface{}{
 			"PKID":                key[9:],
-			"BitCloutLockedNanos": lib.DecodeUint64(key[1:9]),
-			"MongoMeta":           "The amount of BitClout locked in a particular profile's PKID.",
-			"BadgerKeyPrefix":     "_PrefixCreatorBitCloutLockedNanosCreatorPubKeyIIndex:32",
+			"DeSoLockedNanos": lib.DecodeUint64(key[1:9]),
+			"MongoMeta":           "The amount of DeSo locked in a particular profile's PKID.",
+			"BadgerKeyPrefix":     "_PrefixCreatorDeSoLockedNanosCreatorPubKeyIIndex:32",
 		}
 		SimplifyMap(&docMap)
 
