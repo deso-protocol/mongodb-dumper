@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	coreCmd "github.com/deso-project/core/cmd"
-	"github.com/deso-project/mongodb-dumper/mongodb"
+	coreCmd "github.com/bitclout/deso-core/cmd"
+	"github.com/bitclout/deso-mongodb-dumper/mongodb"
 )
 
 type Node struct {

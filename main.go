@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/deso-project/mongodb-dumper/cmd"
+	"github.com/bitclout/deso-mongodb-dumper/cmd"
 )
 
 func main() {

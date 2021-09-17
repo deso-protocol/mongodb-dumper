@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	coreCmd "github.com/deso-project/core/cmd"
+	coreCmd "github.com/bitclout/deso-core/cmd"
 	"github.com/golang/glog"
 )
 

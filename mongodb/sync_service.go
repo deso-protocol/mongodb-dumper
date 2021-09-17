@@ -8,7 +8,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/deso-project/core/lib"
+	"github.com/bitclout/deso-core/lib"
 	"log"
 	"math/big"
 	"time"
@@ -115,8 +115,6 @@ func SimplifyMap(docMap *map[string]interface{}) {
 			} else {
 				(*docMap)[key] = (*docMap)[key].(*big.Int).String()
 			}
-		case lib.StakeEntry:
-			delete(*docMap, key)
 		}
 
 		// ONLY USE KEY SWITCH FOR CHANGING PRIMITIVE TYPES
@@ -189,7 +187,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 	switch prefix {
 	case 0: // _PrefixBlockHashToBlock
-		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgDeSoBlock)
+		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgBlock)
 		var blockHash lib.BlockHash
 
 		err = blockRet.FromBytes(val)
@@ -661,11 +659,11 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 		docJSON, _ := json.Marshal(docMap)
 		return docJSON
 
-	case 32: // _PrefixCreatorDeSoLockedNanosCreatorPKID
+	case 32: // _PrefixCreatorDESOLockedNanosCreatorPKID
 		docMap := map[string]interface{}{
 			"PKID":                key[9:],
-			"DeSoLockedNanos": lib.DecodeUint64(key[1:9]),
-			"MongoMeta":           "The amount of DeSo locked in a particular profile's PKID.",
+			"DESOLockedNanos": lib.DecodeUint64(key[1:9]),
+			"MongoMeta":           "The amount of DESO locked in a particular profile's PKID.",
 			"BadgerKeyPrefix":     "_PrefixCreatorDeSoLockedNanosCreatorPubKeyIIndex:32",
 		}
 		SimplifyMap(&docMap)
@@ -758,7 +756,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 	case 39: //_PrefixReclouterPubKeyRecloutedPostHashToRecloutPostHash
 
 		dec := gob.NewDecoder(bytes.NewReader(val))
-		var RE lib.RecloutEntry
+		var RE lib.RepostEntry
 		err = dec.Decode(&RE)
 		if err != nil {
 			return nil
