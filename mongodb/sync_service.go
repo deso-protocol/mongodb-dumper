@@ -664,7 +664,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 			"PKID":                key[9:],
 			"DESOLockedNanos": lib.DecodeUint64(key[1:9]),
 			"MongoMeta":           "The amount of DESO locked in a particular profile's PKID.",
-			"BadgerKeyPrefix":     "_PrefixCreatorDeSoLockedNanosCreatorPubKeyIIndex:32",
+			"BadgerKeyPrefix":     "_PrefixCreatorDESOLockedNanosCreatorPubKeyIIndex:32",
 		}
 		SimplifyMap(&docMap)
 
