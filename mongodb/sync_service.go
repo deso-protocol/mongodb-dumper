@@ -753,7 +753,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 		docJSON, _ := json.Marshal(docMap)
 		return docJSON
-	case 39: //_PrefixReclouterPubKeyRecloutedPostHashToRecloutPostHash
+	case 39: //_PrefixReposterPubKeyRepostedPostHashToRepostPostHash
 
 		dec := gob.NewDecoder(bytes.NewReader(val))
 		var RE lib.RepostEntry
@@ -764,8 +764,8 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 		docMap := structs.Map(RE) // Convert to map
 		SimplifyMap(&docMap)
-		docMap["MongoMeta"] = "A user's public key and the post hash of one of the post they reclouted"
-		docMap["BadgerKeyPrefix"] = "_PrefixReclouterPubKeyRecloutedPostHashToRecloutPostHash:39"
+		docMap["MongoMeta"] = "A user's public key and the post hash of one of the post they reposted"
+		docMap["BadgerKeyPrefix"] = "_PrefixReposterPubKeyRepostedPostHashToRepostPostHash:39"
 
 		docJSON, _ := json.Marshal(docMap)
 		return docJSON
