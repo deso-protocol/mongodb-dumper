@@ -8,7 +8,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/bitclout/deso-core/lib"
+	"github.com/deso-protocol/core/lib"
 	"log"
 	"math/big"
 	"time"
@@ -187,7 +187,7 @@ func BadgerItrToJSON(itr *badger.Iterator) []byte {
 
 	switch prefix {
 	case 0: // _PrefixBlockHashToBlock
-		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgBlock)
+		blockRet := lib.NewMessage(lib.MsgTypeBlock).(*lib.MsgDeSoBlock)
 		var blockHash lib.BlockHash
 
 		err = blockRet.FromBytes(val)

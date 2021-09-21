@@ -1,8 +1,8 @@
-module github.com/bitclout/deso-mongodb-dumper
+module github.com/deso-protocol/mongodb-dumper
 
 go 1.16
 
-replace github.com/bitclout/deso-core => ../core/
+replace github.com/deso-protocol/core => ../core/
 
 replace github.com/golang/glog => ../core/third_party/github.com/golang/glog
 
@@ -13,10 +13,10 @@ replace github.com/sasha-s/go-deadlock => ../core/third_party/github.com/sasha-s
 require (
 	cloud.google.com/go/storage v1.15.0
 	github.com/DataDog/datadog-go v4.5.0+incompatible
-	github.com/bitclout/deso-core v0.0.0-00010101000000-000000000000
 	github.com/btcsuite/btcd v0.21.0-beta
 	github.com/btcsuite/btcutil v1.0.2
 	github.com/davecgh/go-spew v1.1.1
+	github.com/deso-protocol/core v0.0.0-00010101000000-000000000000
 	github.com/dgraph-io/badger/v3 v3.2103.0
 	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/fatih/structs v1.1.0
