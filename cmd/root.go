@@ -16,7 +16,7 @@ var cfgFile string
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "mongodb-dumper",
-	Short: "BitClout node with mongodb dumper",
+	Short: "DeSo node with mongodb dumper",
 	Long: `...`,
 }
 
@@ -27,14 +27,14 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.bitclout/mongodb-dumper.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.deso/mongodb-dumper.yaml)")
 }
 
 func initConfig() {
 	if cfgFile != "" {
 		viper.SetConfigFile(cfgFile)
 	} else {
-		home, err := homedir.Expand("~/.bitclout")
+		home, err := homedir.Expand("~/.deso")
 		cobra.CheckErr(err)
 
 		viper.AddConfigPath(home)

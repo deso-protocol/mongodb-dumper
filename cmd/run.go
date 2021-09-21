@@ -8,7 +8,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	coreCmd "github.com/bitclout/core/cmd"
+	coreCmd "github.com/deso-protocol/core/cmd"
 	"github.com/golang/glog"
 )
 
@@ -48,7 +48,7 @@ func init() {
 
 	// Add the mongo dumper flags
 	runCmd.PersistentFlags().String("mongo-uri", "mongodb://localhost:27017", "Mongo connection URI")
-	runCmd.PersistentFlags().String("mongo-database", "bitclout", "Mongo database name")
+	runCmd.PersistentFlags().String("mongo-database", "deso", "Mongo database name")
 	runCmd.PersistentFlags().String("mongo-collection", "data", "Mongo collection name")
 
 	runCmd.PersistentFlags().VisitAll(func(flag *pflag.Flag) {
