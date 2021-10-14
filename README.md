@@ -25,9 +25,9 @@ docker run -it mongodb-dumper /deso/bin/mongodb-dumper run
 Configure the connection to mongodb:
 
 ```
-   --mongodb-collection   string    MongoDB collection name  (default "data")
-   --mongodb-database     string    MongoDB database name    (default "deso")
-   --mongodb-uri          string    MongoDB connection URI   (default "mongodb://localhost:27017")
+   --mongo-collection   string    MongoDB collection name  (default "data")
+   --mongo-database     string    MongoDB database name    (default "deso")
+   --mongo-uri          string    MongoDB connection URI   (default "mongodb://localhost:27017")
 ```
 
 You may need to connect to the localhost network or supply DB authentication:
