@@ -25,6 +25,7 @@ COPY mongodb-dumper/main.go .
 COPY core/desohash ../core/desohash
 COPY core/cmd       ../core/cmd
 COPY core/lib       ../core/lib
+COPY core/migrate   ../core/migrate
 
 # build mongodb-dumper
 RUN GOOS=linux go build -mod=mod -a -installsuffix cgo -o bin/mongodb-dumper main.go
