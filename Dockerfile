@@ -2,7 +2,7 @@ FROM alpine:edge AS mongodb-dumper
 
 RUN apk update
 RUN apk upgrade
-RUN apk add --update go=1.16.4-r0 gcc g++ vips-dev
+RUN apk add --update go gcc g++ vips-dev
 
 WORKDIR /deso/src
 
