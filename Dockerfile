@@ -10,7 +10,6 @@ COPY mongodb-dumper/go.mod mongodb-dumper/
 COPY mongodb-dumper/go.sum mongodb-dumper/
 COPY core/go.mod core/
 COPY core/go.sum core/
-COPY core/third_party/ core/third_party/
 
 WORKDIR /deso/src/mongodb-dumper
 
